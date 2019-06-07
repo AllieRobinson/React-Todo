@@ -35,51 +35,50 @@ class App extends React.Component {
     event.preventDefault();
     let todos = this.state.todos;
     todos.push(this.state.todo);
-    // console.log("todos", todos)
     this.setState({ 
       todos: todos, 
       todo: {...this.state.todo, 
-        task: "" }
+            task: "" }
       });
   };
 
 
   changeTodo = event => {
-    // console.log("this.state.todo", this.state.todo);
-    // console.log("event.target", event.target);
-    // console.log("event.target.name", event.target.name);
-    // console.log("event.target.value", event.target.value);
     this.setState({
       todo: {...this.state.todo, 
             task: event.target.value }
     });
   };
 
+  toggleCompleted = id => {
+    let todos = this.state.todos;
+    const newTodos = todos.map(todo => {
+      if (id === todo.id) {
+        todo.completed = !todo.completed;
+        return todo;
+      } else {
+        return todo;
+      }
+    }); 
+    this.setState({
+      todos: newTodos
+      });
+  }
 
-  // toggleComplete = id => {
-  //   let todos = this.state.todos;
-  //   todos = todos.map( todo => {
-  //     if (todo.id === id) {
-  //       todo.completed = !todo.completed;
-  //       return todo;
-  //     } else {
-  //       return todo;
-  //     }
-  //   })
-  // }
-
-  // clearTodos = event => {
-  //   event.preventDefault();
-  //   let todos = this.state.todos;
-  //   todos = todos.filter(todo => !todo.completed);
-  //   this.setState({ todos });
-  // };
+  clearTodos = event => {
+    event.preventDefault();
+    let todos = this.state.todos;
+    const newTodos = todos.filter(todo => !todo.completed);
+    this.setState({
+      todos: newTodos
+    });
+  }
 
   render() {
     return (
       <div>
         <TodoList 
-          toggleComplete={this.toggleComplete}
+          toggleCompleted={this.toggleCompleted}
           todos={this.state.todos} />
         <TodoForm
           todo={this.state.todo}
