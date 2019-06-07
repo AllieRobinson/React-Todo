@@ -35,8 +35,12 @@ class App extends React.Component {
     event.preventDefault();
     let todos = this.state.todos;
     todos.push(this.state.todo);
-    console.log("todos", todos)
-    this.setState({ todos, todo: ''});
+    // console.log("todos", todos)
+    this.setState({ 
+      todos: todos, 
+      todo: {...this.state.todo, 
+        task: "" }
+      });
   };
 
 
