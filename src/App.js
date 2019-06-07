@@ -18,19 +18,70 @@ class App extends React.Component {
         },
         {
           task: "Play outside",
-          id: Date.now(),
+          id: Date.now() + 1,
           completed: false
         }
       ],
-      todo = ""
+      todo:
+        {
+          task: "",
+          id: Date.now(),
+          completed: false
+        }
     }
   }
+
+  addTodo = event => {
+    event.preventDefault();
+    let todos = this.state.todos;
+    todos.push(this.state.todo);
+    console.log("todos", todos)
+    this.setState({ todos, todo: ''});
+  };
+
+
+  changeTodo = event => {
+    // console.log("this.state.todo", this.state.todo);
+    // console.log("event.target", event.target);
+    // console.log("event.target.name", event.target.name);
+    // console.log("event.target.value", event.target.value);
+    this.setState({
+      todo: {...this.state.todo, 
+            task: event.target.value }
+    });
+  };
+
+
+  // toggleComplete = id => {
+  //   let todos = this.state.todos;
+  //   todos = todos.map( todo => {
+  //     if (todo.id === id) {
+  //       todo.completed = !todo.completed;
+  //       return todo;
+  //     } else {
+  //       return todo;
+  //     }
+  //   })
+  // }
+
+  // clearTodos = event => {
+  //   event.preventDefault();
+  //   let todos = this.state.todos;
+  //   todos = todos.filter(todo => !todo.completed);
+  //   this.setState({ todos });
+  // };
 
   render() {
     return (
       <div>
-        <TodoList todos={this.state.todos} />
-        <TodoForm />
+        <TodoList 
+          toggleComplete={this.toggleComplete}
+          todos={this.state.todos} />
+        <TodoForm
+          todo={this.state.todo}
+          changeTodo={this.changeTodo}
+          addTodo={this.addTodo}
+          clearTodos={this.clearTodos} />
       </div>
     );
   }
