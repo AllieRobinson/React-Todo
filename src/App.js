@@ -10,22 +10,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: [
-        {
-          task: "Be a boss",
-          id: Date.now(),
-          completed: false
-        },
-        {
-          task: "Play outside",
-          id: Date.now() + 1,
-          completed: false
-        }
-      ],
+      todos: [],
       todo:
         {
           task: "",
-          id: Date.now(),
+          id: Math.random(),
           completed: false
         }
     }
@@ -42,7 +31,6 @@ class App extends React.Component {
       });
   };
 
-
   changeTodo = event => {
     this.setState({
       todo: {...this.state.todo, 
@@ -55,10 +43,9 @@ class App extends React.Component {
     const newTodos = todos.map(todo => {
       if (id === todo.id) {
         todo.completed = !todo.completed;
+        console.log(todo.completed)
         return todo;
-      } else {
-        return todo;
-      }
+      } 
     }); 
     this.setState({
       todos: newTodos
