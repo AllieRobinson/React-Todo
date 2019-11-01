@@ -4,18 +4,18 @@ import TodoForm from './components/TodoComponents/TodoForm';
 
 const data = [
   {
-    task: "Scream at code",
+    task: "Glare at code",
     id: 123,
     complete: false
   },
   {
     task: "Delete code",
-    id: 123,
+    id: 1234,
     complete: false
   },
   {
     task: "Start over",
-    id: 123,
+    id: 12345,
     complete: false
   }
 ]
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
 toggleComplete = todoId => {
-  console.log("toggleComplete: " todoId);
+  console.log("toggleComplete: ", todoId);
   this.setState({
     todos: this.state.todos.map(todo => {
       if(todo.id === todoId) {
@@ -57,7 +57,7 @@ addTodo = todoName => {
       {
         task: todoName,
         id: Math.random(),
-        complete: false;
+        complete: false
       }
     ]
   })

@@ -16,10 +16,10 @@ class TodoForm extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        if (this.state.todoName != "") {
-            this.props.addItem(this.state.todoName)
+        if (this.state.todoName !== "") {
+            this.props.addTodo(this.state.todoName)
             this.setState({
-                itemName: ""
+                todoName: ""
             })
         }
     }
@@ -32,8 +32,12 @@ class TodoForm extends React.Component {
                     onChange={this.handleChanges}
                     type="text"
                     name="task"
-                    value={this.state.todoName} />
+                    value={this.state.todoName}
+                 />
+                <button>Add</button>
             </form>
         )
     }
 }
+
+export default TodoForm;
