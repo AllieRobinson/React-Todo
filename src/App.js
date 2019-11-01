@@ -10,7 +10,23 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: [],
+      todos: [
+        {
+          task: "Hello",
+          id: Math.random(),
+          completed: false
+        },
+        {
+          task: "Heyoooooo",
+          id: Math.random(),
+          completed: false
+        },
+        {
+          task: "Hi",
+          id: Math.random(),
+          completed: false
+        },
+      ],
       todo:
         {
           task: "",
@@ -43,7 +59,6 @@ class App extends React.Component {
     const newTodos = todos.map(todo => {
       if (id === todo.id) {
         todo.completed = !todo.completed;
-        console.log(todo.completed)
         return todo;
       } 
     }); 
